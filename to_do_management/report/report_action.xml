@@ -1,0 +1,109 @@
+<odoo>
+    <record id="report_action_record" model="ir.actions.report">
+        <field name="name">Print Report</field>
+        <field name="model">todo</field>
+        <field name="binding_model_id" ref="model_todo"/>
+        <field name="binding_type">report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">to_do_management.template_report_action</field>
+    </record>
+    <template id="template_report_action">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <style>
+                        table {
+                        width:100%;
+                        border: 1px solid #ddd;
+                        border-collapse:collapse;
+                        text-align: center;
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: #2c3e50;
+                        margin-bottom: 20px;
+                        padding: Spx;
+                        }
+
+                        table td {
+                        background-color: #2fffff;
+                        padding: Spx;
+                        border: 1px solid #ddd;
+                        font-size: 14px;
+                        }
+
+                        table th {
+                        background-color: #2c3e50;
+                        color: white;
+                        padding: Spx;
+                        }
+                        .h1_info {
+                        text-align: center;
+                        color: #2c3e50;
+                        }
+                    </style>
+                    <h1 class="h1_info">ToDo Management</h1>
+                    <div style="margin-top: 40px;">
+                        <table>
+                            <thead>
+                                <th colspan="4">Data From ToDo App(Group1)</th>
+                            </thead>
+                            <tbody>
+                                <td>Name</td>
+                                <td>
+                                    <span t-field="o.name"/>
+                                </td>
+                                <td>Description</td>
+                                <td>
+                                    <span t-field="o.description"/>
+                                </td>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <th colspan="4">
+                                    Data From ToDo App(Group2)
+                                </th>
+                            </thead>
+                            <tbody>
+                                <td>Due Date</td>
+                                <td>
+                                    <span t-field="o.due_date"/>
+                                </td>
+                                <td>Selling Date</td>
+                                <td>
+                                    <span t-field="o.selling_date"/>
+                                </td>
+
+                            </tbody>
+                        </table>
+                        <br/>
+                        <table>
+                            <thead>
+                                <th>ToDo_ID</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.line_ids" t-as="l">
+                                    <tr>
+                                        <td>
+                                            <span t-field="l.todo_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.phone"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.address"/>
+                                        </td>
+                                    </tr>
+                                </t>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

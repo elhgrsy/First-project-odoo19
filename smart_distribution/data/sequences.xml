@@ -1,0 +1,8 @@
+<odoo>
+    <record id="sequences_field_code" model="ir.sequence">
+        <field name="name">Sequences Code</field>
+        <field name="code">sequences_code</field>
+        <field name="prefix">PRD</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

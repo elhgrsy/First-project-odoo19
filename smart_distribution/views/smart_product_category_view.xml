@@ -1,0 +1,52 @@
+<odoo>
+    <record id="smart_product_category_list" model="ir.ui.view">
+        <field name="name">Category List</field>
+        <field name="model">smart.product.category</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="smart_product_category_form" model="ir.ui.view">
+        <field name="name">Category List</field>
+        <field name="model">smart.product.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string=" Information Category">
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="product">
+                            <field name="product_ids">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                    <field name="price"/>
+                                    <field name="quantity"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="smart_product_category_action" model="ir.actions.act_window">
+        <field name="name">Category</field>
+        <field name="res_model">smart.product.category</field>
+    </record>
+    <menuitem
+            id="five_menuitem"
+            name="Categories"
+            parent="secondary_menuitem"
+            action="smart_product_category_action"/>
+</odoo>

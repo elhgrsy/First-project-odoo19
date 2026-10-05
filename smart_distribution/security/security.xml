@@ -1,0 +1,22 @@
+<odoo>
+<!--    <record id="smart_distribution_category" model="ir.module.category">-->
+<!--        <field name="name">smart distribution category</field>-->
+<!--    </record>-->
+    <record id="smart_distribution_user" model="res.groups">
+        <field name="name">Smart Distribution User</field>
+<!--        <field name="privilege_id" ref="smart_distribution.smart_distribution_category"/>-->
+    </record>
+    <record id="smart_distribution_manger" model="res.groups">
+        <field name="name">Smart Distribution Manger</field>
+<!--        <field name="privilege_id" ref="smart_distribution.smart_distribution_category"/>-->
+    </record>
+    <record id="smart_distribution_rule" model="ir.rule">
+        <field name="name">smart rule</field>
+        <field name="model_id" ref="smart_distribution.model_smart_product"/>
+        <field name="domain_force">[('create_uid','=',user.id)]</field>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="perm_write" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_smart_product,access_smart_product,model_smart_product,,1,1,1,1
+access_smart_product_category,access_smart_product_category,model_smart_product_category,,1,1,1,1

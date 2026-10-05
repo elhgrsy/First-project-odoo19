@@ -1,0 +1,125 @@
+<odoo>
+    <record id="action_2" model="ir.ui.view">
+        <field name="name">To Do Form</field>
+        <field name="model">todo</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="(is_late)">
+                <field name="name"/>
+                <field name="selling_date"/>
+                <field name="description"/>
+                <field name="assign_to"/>
+                <field name="due_date"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_3" model="ir.ui.view">
+        <field name="name">To Do Data</field>
+        <field name="model">todo</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <header>
+                        <button name="action_new" type="object" class="btn-primary" string="New"
+                                invisible="status in ('new','closed')"/>
+                        <button name="action_in_progress" type="object" class="btn-info" string=" In Progress"
+                                invisible="status in ('in_progress','closed',)"/>
+                        <button name="action_complete" type="object" class="btn-secondary" string="Completed"
+                                invisible="status in ('complete','closed',)"/>
+                        <field name="status" widget="statusbar"/>
+                    </header>
+                    <div class="one_title">
+                        <label for="ref"/>
+                        <h1>
+                            <field name="ref"/>
+                        </h1>
+                        <label for="name"/>
+                        <h3>
+                            <field name="name" readonly="status == 'closed'"/>
+                        </h3>
+                    </div>
+                    <group>
+                        <group string="group 1">
+                            <field name="description"/>
+                            <field name="assign_to" readonly="status == 'closed'"/>
+                        </group>
+                        <group string="group 2">
+                            <field name="due_date" readonly="status == 'closed'"/>
+                            <field name="selling_date" readonly="status == 'closed'"/>
+                            <field name="is_late" readonly="status == 'closed'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="ToDo User">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="todo_id"/>
+                                    <field name="phone"/>
+                                    <field name="address"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="action_4" model="ir.ui.view">
+        <field name="name">search todo</field>
+        <field name="model">todo</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="assign_to"/>
+                <filter name="status_new" string="Is (New)" domain="[('status' , '=' , 'new')]"/>
+                <filter name="status_pro" string="Is (In Progress)" domain="[('status' , '=' , 'in progress')]"/>
+                <filter name="status_com" string="Is (Completed)" domain="[('status' , '=' , 'completed')]"/>
+                <filter name="g_b_des" string="Is (Description)" context="{'group_by' : 'description'}"/>
+                <filter name="g_b_asi" string="Is (Assign_To)" context="{'group_by' : 'assign_to'}"/>
+                <filter name="g_b_date" string="Is (Due_Date)" context="{'group_by' : 'due_date'}"/>
+            </search>
+        </field>
+    </record>
+    <record id="cloesd_todo_server" model="ir.actions.server">
+        <field name="name">Closed</field>
+        <field name="model_id" ref="model_todo"/>
+        <field name="binding_model_id" ref="model_todo"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.action_closed()
+        </field>
+    </record>
+    <record id="action_record_wizerd_change_status" model="ir.actions.server">
+        <field name="name">Change Status</field>
+        <field name="model_id" ref="model_todo"/>
+        <field name="binding_model_id" ref="model_todo"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = record.action_wizard_open_change_status_window()
+        </field>
+    </record>
+    <record id="selling_date_record" model="ir.cron">
+        <field name="name">ToDo: selling date</field>
+        <field name="model_id" ref="model_todo"/>
+        <field name="state">code</field>
+        <field name="code">
+            model.check_selling_date()
+        </field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <!--        <field name="numbercall">-1</field>  ماعتش موجوده في odoo 19 -->
+        <field name="active">1</field>
+    </record>
+    <record id="action_1" model="ir.actions.act_window">
+        <field name="name">To Do</field>
+        <field name="res_model">todo</field>
+    </record>
+    <menuitem
+            id="all_task_action"
+            name="All tasks"
+            parent="to_do_level2"
+            action="action_1"
+    />
+</odoo>
+

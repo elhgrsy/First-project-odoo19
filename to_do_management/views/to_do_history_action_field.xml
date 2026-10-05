@@ -1,0 +1,57 @@
+<odoo>
+    <record id="action_history_2" model="ir.ui.view">
+        <field name="name">ToDo History Form</field>
+        <field name="model">todo.history</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" delete="0">
+                <field name="user_id"/>
+                <field name="todo_id"/>
+                <field name="old_status"/>
+                <field name="new_status"/>
+                <field name="reason"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_history_3" model="ir.ui.view">
+        <field name="name">ToDo History Data</field>
+        <field name="model">todo.history</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0">
+                <sheet>
+                    <group>
+                        <group string="group 1">
+                            <field name="user_id"/>
+                            <field name="todo_id"/>
+                        </group>
+                        <group string="group 2">
+                            <field name="old_status"/>
+                            <field name="new_status"/>
+                            <field name="reason"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="ToDo User">
+                            <field name="line_ids" readonly="1">
+                                <list>
+                                    <field name="phone"/>
+                                    <field name="address"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_history_1" model="ir.actions.act_window">
+        <field name="name">ToDo History</field>
+        <field name="res_model">todo.history</field>
+    </record>
+    <menuitem
+            id="all_task_todo_history_action"
+            name="ToDo History"
+            parent="to_do_level2"
+            action="action_history_1"
+    />
+</odoo>
+

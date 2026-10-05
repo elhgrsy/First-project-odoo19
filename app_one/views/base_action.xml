@@ -1,0 +1,16 @@
+<odoo>
+    <menuitem
+          id = "action_one"
+         name = "Real Estate"
+          web_icon = "app_one,static/description/icon.png"
+    />
+    <menuitem
+         id = "action_tow"
+         name="Properties"
+          parent = "action_one"/>
+    <menuitem
+        id="owner_act"
+        name="Owner In Property"
+        parent="action_one"/>
+
+</odoo>

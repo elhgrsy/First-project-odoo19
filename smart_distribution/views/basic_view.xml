@@ -1,0 +1,14 @@
+<odoo>
+    <menuitem
+            id="leader_menuitem"
+            name="Smart Distribution"/>
+    <menuitem
+            id="secondary_menuitem"
+            name="Products"
+            parent="leader_menuitem"/>
+    <menuitem
+            id="thread_menuitem"
+            name="configuration"
+            parent="leader_menuitem"/>
+
+</odoo>

@@ -1,0 +1,8 @@
+<odoo>
+    <record id="record_seq_pro" model="ir.sequence">
+        <field name="name">Pro Sequences</field>
+        <field name="code">pro_sequences</field>
+        <field name="prefix">RRO</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

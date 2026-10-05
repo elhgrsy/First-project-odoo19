@@ -1,0 +1,57 @@
+<odoo>
+    <record id="property_history_list_view" model="ir.ui.view">
+        <field name="name">Property History list</field>
+        <field name="model">property.history</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" delete="0">
+                <field name="user_id"/>
+                <field name="property_id"/>
+                <field name="old_state"/>
+                <field name="new_state"/>
+                <field name="reason"/>
+            </list>
+        </field>
+    </record>
+    <record id="property_history_form_view" model="ir.ui.view">
+        <field name="name">Property History form</field>
+        <field name="model">property.history</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0">
+                <sheet>
+                    <group>
+                        <group string="group_one">
+                            <field name="user_id"/>
+                            <field name="property_id"/>
+                        </group>
+                        <group string="group_tow">
+                            <field name="old_state"/>
+                            <field name="new_state"/>
+                            <field name="reason"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="bedrooms">
+                            <field name="line_ids" readonly="1">
+                                <list>
+                                    <field name="description"/>
+                                    <field name="area"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="property_history_action" model="ir.actions.act_window">
+        <field name="name">Property History Action</field>
+        <field name="res_model">property.history</field>
+    </record>
+
+    <menuitem
+            id="action_pro_history_three"
+            name="Property History"
+            parent="action_tow"
+            action="property_history_action"
+    />
+</odoo>

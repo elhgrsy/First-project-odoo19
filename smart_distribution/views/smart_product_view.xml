@@ -1,0 +1,63 @@
+<odoo>
+    <record id="smart_product_list" model="ir.ui.view">
+        <field name="name">smart product list</field>
+        <field name="model">smart.product</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="description"/>
+                <field name="price"/>
+                <field name="cost"/>
+                <field name="quantity"/>
+                <field name="active"/>
+                <field name="category_id"/>
+                <field name="image"/>
+                <field name="profit"/>
+            </list>
+        </field>
+    </record>
+    <record id="smart_product_form" model="ir.ui.view">
+        <field name="name">smart_product_form</field>
+        <field name="model">smart.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="one_title">
+                        <label for="name" srting="Product Name"/>
+                        <h3>
+                            <field name="name"/>
+                        </h3>
+                    </div>
+                    <div class="oe_avatar">
+                        <field name="image" widget="image" class="oe_avatar"/>
+                    </div>
+                    <group>
+                        <group string="General Information">
+                            <field name="code"/>
+                            <field name="category_id"/>
+                            <field name="price"/>
+                            <field name="cost"/>
+                            <field name="quantity"/>
+                            <field name="active"/>
+                            <field name="description"/>
+                            <field name="profit"/>
+                            <field name="profit_margin" widget="percentage"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="smart_product_1" model="ir.actions.act_window">
+        <field name="name">Smart Product</field>
+        <field name="res_model">smart.product</field>
+    </record>
+    <menuitem
+            id="ford_menuitem"
+            name="Products"
+            parent="secondary_menuitem"
+            action="smart_product_1"
+    />
+</odoo>
